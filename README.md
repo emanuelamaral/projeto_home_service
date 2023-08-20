@@ -44,11 +44,11 @@ Este é o repositório do projeto Home Service, desenvolvido como parte da disci
 
 ## Equipe de Desenvolvimento
 
-- [Nome do Aluno 1](https://github.com/emanuelamaral)
+- [Amoz Emanuel](https://github.com/emanuelamaral)
 
 ## Professor da Disciplina
 
-- [Nome do Professor](https://github.com/evertonfoz)
+- [Everton Coimbra](https://github.com/evertonfoz)
 
 ## Licença
 
