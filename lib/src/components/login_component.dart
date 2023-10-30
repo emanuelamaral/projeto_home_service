@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_home_service/src/components/checkbox_component.dart';
 
 import 'label_component.dart';
+import 'sign_button_component.dart';
 import 'textfield_component.dart';
 
 class LoginComponent extends StatelessWidget {
@@ -25,16 +27,48 @@ class LoginComponent extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey, width: 0.4),
                 borderRadius: BorderRadius.circular(12.0)),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                LabelComponents(textLabel: "Seu Email"),
-                TextFieldComponent(
+                const LabelComponents(textLabel: "Seu Email"),
+                const TextFieldComponent(
                     password: false, email: true, hintText: "seu@email.com"),
-                LabelComponents(textLabel: "Sua Senha"),
-                TextFieldComponent(
-                    password: true, email: false, hintText: "*******")
+                const LabelComponents(textLabel: "Sua Senha"),
+                const TextFieldComponent(
+                    password: true, email: false, hintText: "*******"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const CheckBoxComponent(),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Esqueceu a senha?",
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        ))
+                  ],
+                ),
+                const Center(
+                    child: SignButtonComponent(
+                  text: "Login",
+                  login: true,
+                )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Não possui uma conta?",
+                      style: TextStyle(fontFamily: 'Poppins'),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Cadastrar",
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        ))
+                  ],
+                )
               ],
             ),
           ),

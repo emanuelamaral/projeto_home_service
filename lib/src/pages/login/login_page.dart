@@ -6,14 +6,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Login',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.purple,
-        ),
-        body: const LoginComponent());
+    return const Scaffold(body: LoginComponent());
   }
 }
