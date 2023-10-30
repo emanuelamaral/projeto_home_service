@@ -30,18 +30,26 @@ class _CheckboxExampleState extends State<CheckboxExample> {
       if (states.any(interactiveStates.contains)) {
         return Colors.white;
       }
-      return Colors.purple;
+      return Colors.white;
     }
 
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
+    return Row(
+      children: [
+        Checkbox(
+          checkColor: Colors.purple,
+          fillColor: MaterialStateProperty.resolveWith(getColor),
+          value: isChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isChecked = value!;
+            });
+          },
+        ),
+        const Text(
+          'Lembrar de mim',
+          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/components/checkbox_component.dart';
+import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 
 import 'label_component.dart';
 import 'sign_button_component.dart';
@@ -45,7 +46,9 @@ class LoginComponent extends StatelessWidget {
                         onPressed: () {},
                         child: const Text(
                           "Esqueceu a senha?",
-                          style: TextStyle(fontFamily: 'Poppins'),
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold),
                         ))
                   ],
                 ),
@@ -59,13 +62,19 @@ class LoginComponent extends StatelessWidget {
                   children: [
                     const Text(
                       "Não possui uma conta?",
-                      style: TextStyle(fontFamily: 'Poppins'),
+                      style: TextStyle(
+                          fontFamily: 'Poppins', fontWeight: FontWeight.bold),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const RegistryPage()));
+                        },
                         child: const Text(
                           "Cadastrar",
-                          style: TextStyle(fontFamily: 'Poppins'),
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold),
                         ))
                   ],
                 )
