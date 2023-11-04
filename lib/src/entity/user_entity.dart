@@ -1,9 +1,9 @@
 class UserEntity {
   int? userId;
-  final String name;
-  final String email;
-  final String password;
-  final String cpf;
+  final String? name;
+  final String? email;
+  final String? password;
+  final String? cpf;
 
   UserEntity(
       {this.userId,

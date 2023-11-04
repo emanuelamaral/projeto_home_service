@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class SignButtonComponent extends StatelessWidget {
   final String text;
   final bool login;
+  final Function? onPressedCallback;
 
   const SignButtonComponent(
-      {super.key, required this.text, required this.login});
+      {super.key,
+      required this.text,
+      required this.login,
+      required this.onPressedCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,8 @@ class SignButtonComponent extends StatelessWidget {
           color: const Color.fromARGB(255, 193, 42, 223)),
       child: TextButton(
           onPressed: () {
-            login ? () {} : null;
+            print('entrou no onPressd');
+            onPressedCallback?.call();
           },
           child: Text(
             text,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_home_service/src/components/registry_component.dart';
+import 'package:projeto_home_service/src/components/registry/registry_component.dart';
 
 class RegistryPage extends StatelessWidget {
   const RegistryPage({super.key});

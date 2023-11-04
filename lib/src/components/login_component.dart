@@ -4,7 +4,7 @@ import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 
 import 'label_component.dart';
 import 'sign_button_component.dart';
-import 'textfield_component.dart';
+import 'textfield/textfield_component.dart';
 
 class LoginComponent extends StatelessWidget {
   const LoginComponent({super.key});
@@ -34,10 +34,17 @@ class LoginComponent extends StatelessWidget {
               children: [
                 const LabelComponents(textLabel: "Seu Email"),
                 const TextFieldComponent(
-                    password: false, email: true, hintText: "seu@email.com"),
+                    password: false,
+                    email: true,
+                    hintText: "seu@email.com",
+                    textController: null),
                 const LabelComponents(textLabel: "Sua Senha"),
                 const TextFieldComponent(
-                    password: true, email: false, hintText: "*******"),
+                  password: true,
+                  email: false,
+                  hintText: "*******",
+                  textController: null,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -56,6 +63,7 @@ class LoginComponent extends StatelessWidget {
                     child: SignButtonComponent(
                   text: "Login",
                   login: true,
+                  onPressedCallback: null,
                 )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
