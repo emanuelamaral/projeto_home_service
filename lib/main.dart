@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/pages/login/login_page.dart';
+import 'package:projeto_home_service/src/pages/onboarding/onboard_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: const OnboardController(),
       routes: {
         '/login': (context) => const LoginPage(),
       },

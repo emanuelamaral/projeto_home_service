@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_home_service/src/components/checkbox_component.dart';
+import 'package:projeto_home_service/src/components/checkbox/checkbox_component.dart';
 import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 
-import 'label_component.dart';
-import 'sign_button_component.dart';
-import 'textfield/textfield_component.dart';
+import '../label/label_component.dart';
+import '../buttons/sign_button_component.dart';
+import '../textfield/textfield_component.dart';
 
 class LoginComponent extends StatelessWidget {
   const LoginComponent({super.key});

@@ -3,8 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../entity/user_entity.dart';
 import '../../service/user_service.dart';
-import '../label_component.dart';
-import '../sign_button_component.dart';
+import '../label/label_component.dart';
+import '../buttons/sign_button_component.dart';
 import '../textfield/cpf_textfield_component.dart';
 import '../textfield/textfield_component.dart';
 
