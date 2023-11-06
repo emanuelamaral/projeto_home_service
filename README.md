@@ -53,7 +53,3 @@ Este é o repositório do projeto Home Service, desenvolvido como parte da disci
 ## Licença
 
 Este projeto é distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
-
----
-
-Agradecemos por escolher o Home Service App para o seu projeto de Desenvolvimento de Aplicações para Dispositivos Móveis. Se você tiver alguma dúvida ou sugestão, não hesite em entrar em contato conosco.
