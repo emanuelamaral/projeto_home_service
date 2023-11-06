@@ -48,7 +48,8 @@ class RegistryForms extends StatelessWidget {
       Fluttertoast.showToast(msg: "Cadastro realizado com sucesso!");
       Navigator.pushNamed(context, '/login');
     } catch (e) {
-      Fluttertoast.showToast(msg: "Falha no cadastro: $e");
+      Fluttertoast.showToast(msg: "Falha no cadastro");
+      print(e);
     }
   }
 
