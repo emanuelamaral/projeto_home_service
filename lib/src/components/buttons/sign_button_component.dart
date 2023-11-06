@@ -22,6 +22,9 @@ class SignButtonComponent extends StatelessWidget {
       child: TextButton(
           onPressed: () {
             print('entrou no onPressd');
+            if (login) {
+              onPressedCallback?.call();
+            }
             onPressedCallback?.call();
           },
           child: Text(

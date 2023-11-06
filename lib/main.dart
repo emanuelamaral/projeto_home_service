@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_home_service/src/pages/home/home_page.dart';
 import 'package:projeto_home_service/src/pages/login/login_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/onboard_controller.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       home: const OnboardController(),
       routes: {
         '/login': (context) => const LoginPage(),
+        '/home_page': (context) => const HomePage(),
       },
     );
   }

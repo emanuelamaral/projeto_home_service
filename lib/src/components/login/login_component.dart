@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_home_service/src/components/checkbox/checkbox_component.dart';
-import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
-
-import '../label/label_component.dart';
-import '../buttons/sign_button_component.dart';
-import '../textfield/textfield_component.dart';
+import 'package:projeto_home_service/src/components/login/login_forms.dart';
 
 class LoginComponent extends StatelessWidget {
   const LoginComponent({super.key});
@@ -22,73 +17,7 @@ class LoginComponent extends StatelessWidget {
                 fontSize: 28,
                 fontWeight: FontWeight.bold),
           ),
-          Container(
-            height: 420,
-            width: 350,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 0.4),
-                borderRadius: BorderRadius.circular(12.0)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const LabelComponents(textLabel: "Seu Email"),
-                const TextFieldComponent(
-                    password: false,
-                    email: true,
-                    hintText: "seu@email.com",
-                    textController: null),
-                const LabelComponents(textLabel: "Sua Senha"),
-                const TextFieldComponent(
-                  password: true,
-                  email: false,
-                  hintText: "*******",
-                  textController: null,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const CheckBoxComponent(),
-                    TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Esqueceu a senha?",
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold),
-                        ))
-                  ],
-                ),
-                const Center(
-                    child: SignButtonComponent(
-                  text: "Login",
-                  login: true,
-                  onPressedCallback: null,
-                )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Não possui uma conta?",
-                      style: TextStyle(
-                          fontFamily: 'Poppins', fontWeight: FontWeight.bold),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const RegistryPage()));
-                        },
-                        child: const Text(
-                          "Cadastrar",
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold),
-                        ))
-                  ],
-                )
-              ],
-            ),
-          ),
+          LoginForm(),
         ],
       ),
     );

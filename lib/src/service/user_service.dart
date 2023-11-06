@@ -3,15 +3,18 @@ import 'package:projeto_home_service/src/entity/user_entity.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../auth/user_auth.dart';
+
 class UserService {
   final String apiUrl = ApiConfig().api();
+  final Map<String, String> headerMap = {"Content-Type": "application/json"};
 
   // Insert User
   Future<void> insertUser(UserEntity userEntity) async {
     final response = await http.post(
       Uri.parse('$apiUrl/user'),
       body: json.encode(userEntity.toJson()),
-      headers: {"Content-Type": "application/json"},
+      headers: headerMap,
     );
 
     if (response.statusCode != 201) {
@@ -21,7 +24,7 @@ class UserService {
 
   // Get User
   Future<UserEntity> getUser(int userId) async {
-    final response = await http.get(Uri.parse('$apiUrl/$userId'));
+    final response = await http.get(Uri.parse('$apiUrl/user/$userId'));
 
     if (response.statusCode == 200) {
       return UserEntity.fromJson(json.decode(response.body));
@@ -34,7 +37,7 @@ class UserService {
     final response = await http.put(
       Uri.parse('$apiUrl/${userEntity.userId}'),
       body: json.encode(userEntity.toJson()),
-      headers: {"Content-Type": "application/json"},
+      headers: headerMap,
     );
 
     if (response.statusCode != 200) {
@@ -49,6 +52,15 @@ class UserService {
 
     if (response.statusCode != 200) {
       throw Exception('Failed to delete User');
+    }
+  }
+
+  Future<void> verifyAuthLogin(UserAuth userAuth) async {
+    final response = await http.post(Uri.parse('$apiUrl/user/auth'),
+        body: json.encode(userAuth.toJson()), headers: headerMap);
+
+    if (response.body == "") {
+      throw Exception('Failed to auth User');
     }
   }
 }
