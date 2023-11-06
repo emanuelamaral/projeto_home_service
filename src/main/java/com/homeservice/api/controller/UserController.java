@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homeservice.api.repository.UserRepository;
+import com.homeservice.api.auth.UserAuth;
 import com.homeservice.api.entity.UserEntity;
 
 @RestController
@@ -33,6 +34,37 @@ public class UserController {
 	public UserEntity getById(@PathVariable Integer id) {
 		return userRepository.findById(id).get();
 		
+	}
+	
+	@GetMapping("/find-email/{email}")
+	public UserEntity getByEmail(@PathVariable String email) {
+		
+		String emailVerify = null;
+		ArrayList<UserEntity> users = getAllUser();
+		
+		for(int i = 0; i < users.size(); i++) {
+			emailVerify = users.get(i).getEmail();
+			if(emailVerify.compareTo(email) == 0) {
+				return userRepository.findById(users.get(i).getUserId()).get();
+				
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	@PostMapping("/auth")
+	public UserEntity authUser(@RequestBody UserAuth userAuth) {
+		
+		UserEntity user = getByEmail(userAuth.getEmail());
+		if(user != null) {
+			if(user.getPassword().compareTo(userAuth.getPassword()) == 0) {
+				return getById(user.getUserId()); 
+			}
+		} 
+		
+		return null;
 	}
 
 	@PostMapping
