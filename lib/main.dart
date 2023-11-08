@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/pages/home/home_page.dart';
 import 'package:projeto_home_service/src/pages/login/login_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/onboard_controller.dart';
+import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
       ),
       home: const OnboardController(),
       routes: {
-        '/login': (context) => const LoginPage(),
+        '/registry': (context) => const RegistryPage(),
         '/home_page': (context) => const HomePage(),
+        '/login': (context) => const LoginPage(),
       },
     );
   }

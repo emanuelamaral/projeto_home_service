@@ -1,133 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding/onboarding.dart';
+import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
+import 'package:projeto_home_service/src/pages/login/login_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/first_onboard_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/second_onboard_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/third_onboard_page.dart';
+import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 
-void main() {
-  runApp(const OnboardController());
-}
-
-class OnboardController extends StatefulWidget {
-  const OnboardController({Key? key}) : super(key: key);
-
-  @override
-  State<OnboardController> createState() => _OnboardControllerState();
-}
-
-class _OnboardControllerState extends State<OnboardController> {
-  late Material materialButton;
-  late int index;
-  final onboardingPagesList = [
-    PageModel(widget: const FirstOnboardPage()),
-    PageModel(widget: const SecondOnboardPage()),
-    PageModel(widget: const ThirdOnboardPage())
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    materialButton = _skipButton();
-    index = 0;
-  }
-
-  Material _skipButton({void Function(int)? setIndex}) {
-    return Material(
-      borderRadius: defaultSkipButtonBorderRadius,
-      color: defaultSkipButtonColor,
-      child: InkWell(
-        borderRadius: defaultSkipButtonBorderRadius,
-        onTap: () {
-          if (setIndex != null) {
-            index = 2;
-            setIndex(2);
-          }
-        },
-        child: const Padding(
-          padding: defaultSkipButtonPadding,
-          child: Text(
-            'Pular',
-            style: defaultSkipButtonTextStyle,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Material get _signupButton {
-    return Material(
-      borderRadius: defaultProceedButtonBorderRadius,
-      color: defaultProceedButtonColor,
-      child: InkWell(
-        borderRadius: defaultProceedButtonBorderRadius,
-        onTap: () {
-          Navigator.pushNamed(context, '/login');
-        },
-        child: const Padding(
-          padding: defaultProceedButtonPadding,
-          child: Text(
-            'Entrar',
-            style: defaultProceedButtonTextStyle,
-          ),
-        ),
-      ),
-    );
-  }
+class OnboardController extends StatelessWidget {
+  const OnboardController({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      home: OnboardSlider(),
+    );
+  }
+}
+
+class OnboardSlider extends StatelessWidget {
+  final Color kPurpleDark = const Color.fromARGB(250, 157, 78, 221);
+
+  const OnboardSlider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return OnBoardingSlider(
+      finishButtonText: 'Cadastrar',
+      onFinish: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const RegistryPage()));
+      },
+      finishButtonStyle: FinishButtonStyle(
+        backgroundColor: kPurpleDark,
       ),
-      home: Scaffold(
-        body: Onboarding(
-          pages: onboardingPagesList,
-          onPageChange: (int pageIndex) {
-            index = pageIndex;
-          },
-          startPageIndex: 0,
-          footerBuilder: (context, dragDistance, pagesLength, setIndex) {
-            return DecoratedBox(
-              decoration: BoxDecoration(
-                color: background,
-                border: Border.all(
-                  width: 0.0,
-                  color: background,
-                ),
-              ),
-              child: ColoredBox(
-                color: background,
-                child: Padding(
-                  padding: const EdgeInsets.all(45.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomIndicator(
-                        netDragPercent: dragDistance,
-                        pagesLength: pagesLength,
-                        indicator: Indicator(
-                          indicatorDesign: IndicatorDesign.line(
-                            lineDesign: LineDesign(
-                              lineType: DesignType.line_uniform,
-                            ),
-                          ),
-                        ),
-                      ),
-                      index == pagesLength - 1
-                          ? _signupButton
-                          : _skipButton(setIndex: setIndex)
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
+      skipTextButton: Text(
+        'Pular',
+        style: TextStyle(
+            fontSize: 16,
+            color: kPurpleDark,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins'),
+      ),
+      trailing: Text(
+        'Entrar',
+        style: TextStyle(
+            fontSize: 16,
+            color: kPurpleDark,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins'),
+      ),
+      trailingFunction: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+      },
+      controllerColor: kPurpleDark,
+      totalPage: 3,
+      headerBackgroundColor: Colors.white,
+      pageBackgroundColor: Colors.white,
+      background: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 70),
+          child: Image.asset(
+            'images/carpinteiro.jpg',
+            height: 400,
+          ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 120),
+          child: Image.asset(
+            'images/jardineira.jpg',
+            height: 400,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 70),
+          child: Image.asset(
+            'images/pintor.jpg',
+            height: 400,
+          ),
+        ),
+      ],
+      speed: 1.8,
+      pageBodies: const [
+        FirstOnboardPage(),
+        SecondOnboardPage(),
+        ThirdOnboardPage(),
+      ],
     );
   }
 }

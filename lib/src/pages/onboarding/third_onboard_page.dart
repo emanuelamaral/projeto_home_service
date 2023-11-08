@@ -1,88 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding/onboarding.dart';
 
 class ThirdOnboardPage extends StatelessWidget {
   const ThirdOnboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: background,
-        border: Border.all(
-          width: 0.0,
-          color: background,
-        ),
-      ),
-      child: SingleChildScrollView(
-        controller: ScrollController(),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 45.0,
-                vertical: 90.0,
-              ),
-              child: Image.asset('assets/images/facebook.png',
-                  color: pageImageColor),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'SECURED BACKUP',
-                  style: pageTitleStyle,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Keep your files in closed safe so you can\'t lose them. Consider TrueNAS.',
-                  style: pageInfoStyle,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Keep your files in closed safe so you can\'t lose them. Consider TrueNAS.',
-                  style: pageInfoStyle,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Keep your files in closed safe so you can\'t lose them. Consider TrueNAS.',
-                  style: pageInfoStyle,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Keep your files in closed safe so you can\'t lose them. Consider TrueNAS.',
-                  style: pageInfoStyle,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            ),
-          ],
-        ),
+    return Container(
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 480,
+          ),
+          Text(
+            'Comece agora!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color.fromARGB(250, 157, 78, 221),
+                fontSize: 24.0,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Poppins'),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Crie sua conta gratuitamente, ou faça login se já tiver cadastro.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.black26,
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Poppins'),
+          ),
+        ],
       ),
     );
   }
