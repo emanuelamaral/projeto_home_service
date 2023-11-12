@@ -26,7 +26,7 @@ class LoginForm extends StatelessWidget {
     try {
       await userService.verifyAuthLogin(userAuth);
       Fluttertoast.showToast(msg: "Login realizado com sucesso!");
-      Navigator.pushNamed(context, '/home_page');
+      Navigator.pushNamed(context, '/main_page');
     } catch (e) {
       Fluttertoast.showToast(msg: "Falha ao logar");
       print(e);

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/components/registry/registry_forms.dart';
 
-import '../../pages/login/login_page.dart';
-
 class RegistryComponent extends StatelessWidget {
   const RegistryComponent({super.key});
 
@@ -39,16 +37,12 @@ class RegistryComponent extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
+                          Navigator.of(context).pushNamed('/login');
                         },
                         child: const Text(
                           'Login',
                           style: TextStyle(
                               fontFamily: 'Poppins',
-                              //color: Colors.red,
                               fontWeight: FontWeight.bold),
                         ))
                   ],

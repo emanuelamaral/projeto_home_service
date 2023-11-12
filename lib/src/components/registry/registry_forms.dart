@@ -44,6 +44,7 @@ class RegistryForms extends StatelessWidget {
       cpf: cpf,
     );
     try {
+      print('Entrou no try do cadastrar');
       await userService.insertUser(userEntity);
       Fluttertoast.showToast(msg: "Cadastro realizado com sucesso!");
       Navigator.pushNamed(context, '/login');

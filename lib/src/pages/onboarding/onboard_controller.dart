@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
-import 'package:projeto_home_service/src/pages/login/login_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/first_onboard_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/second_onboard_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/third_onboard_page.dart';
-import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 
 class OnboardController extends StatelessWidget {
   const OnboardController({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardSlider(),
-    );
+    return const OnboardSlider();
   }
 }
 
@@ -28,8 +23,7 @@ class OnboardSlider extends StatelessWidget {
     return OnBoardingSlider(
       finishButtonText: 'Cadastrar',
       onFinish: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RegistryPage()));
+        Navigator.pushNamed(context, '/registry');
       },
       finishButtonStyle: FinishButtonStyle(
         backgroundColor: kPurpleDark,
@@ -51,8 +45,7 @@ class OnboardSlider extends StatelessWidget {
             fontFamily: 'Poppins'),
       ),
       trailingFunction: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const LoginPage()));
+        Navigator.pushNamed(context, '/login');
       },
       controllerColor: kPurpleDark,
       totalPage: 3,
