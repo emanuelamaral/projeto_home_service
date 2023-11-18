@@ -71,6 +71,10 @@ flutter:
       - images/jardineira.jpg
       - images/pintor.jpg
       - images/carpinteiro.jpg
+      - images/home_cleaning_page.jpg
+      - images/plumber_home_service.jpg
+      - images/painting_home_service.jpg
+      - images/painting_wall.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

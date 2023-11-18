@@ -26,6 +26,7 @@ class _MainPageControllerState extends State<MainPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {

@@ -1,21 +1,47 @@
 import 'package:flutter/material.dart';
 
-class CardHomeServicesComponent extends StatelessWidget {
-  const CardHomeServicesComponent(
-      {super.key, required this.icon, required this.bottomTitle});
+class CardHomeService extends StatelessWidget {
+  final IconData icon;
+  final double radius;
+  final String textIcon;
 
-  final Icon icon;
-  final String bottomTitle;
+  const CardHomeService(
+      {super.key,
+      required this.icon,
+      required this.radius,
+      required this.textIcon});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(16.0),
+    return Container(
+      margin: const EdgeInsets.symmetric(
+          horizontal: 8.0), // Ajuste conforme necessário
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.format_paint_outlined),
-          ListTile(
-            subtitle: Text('Pintura'),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius),
+            ),
+            elevation: 3.0,
+            child: SizedBox(
+              width: 100.0, // Ajuste conforme necessário
+              height: 100.0, // Ajuste conforme necessário
+              child: Center(
+                child: Icon(
+                  icon,
+                  size: 45.0, // Ajuste conforme necessário
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8.0), // Ajuste conforme necessário
+          Text(
+            textIcon,
+            style: const TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w100,
+                fontSize: 12),
           ),
         ],
       ),
