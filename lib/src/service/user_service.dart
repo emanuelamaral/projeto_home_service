@@ -41,8 +41,6 @@ class UserService {
     );
 
     if (response.statusCode != 200) {
-      print(response.statusCode);
-      print(response.body);
       throw Exception('Failed to update User');
     }
   }

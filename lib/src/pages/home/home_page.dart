@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_home_service/src/components/card/card_combos_services.dart';
 import 'package:projeto_home_service/src/components/homePage/combos_services_card.dart';
 import 'package:projeto_home_service/src/components/homePage/home_services_card_list.dart';
 import 'package:projeto_home_service/src/components/homePage/popular_home_services_card.dart';

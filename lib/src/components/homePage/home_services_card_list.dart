@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../pages/professional/professional_page.dart';
 import '../card/card_home_services.dart';
 
 class HomeServiceCardList extends StatelessWidget {
@@ -19,38 +20,98 @@ class HomeServiceCardList extends StatelessWidget {
           height: 150.0, // Ajuste conforme necessário
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: const [
+            children: [
               CardHomeService(
                 icon: Icons.format_paint_outlined,
-                radius: 50.0,
-                textIcon: 'Pintura',
+                textIcon: 'Pintores',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'painter'),
+                    ),
+                  );
+                },
               ),
               CardHomeService(
-                  icon: Icons.electrical_services_rounded,
-                  radius: 50.0,
-                  textIcon: 'Eletricista'),
+                icon: Icons.electrical_services_rounded,
+                textIcon: 'Eletricistas',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'eletrician'),
+                    ),
+                  );
+                },
+              ),
               CardHomeService(
                 icon: Icons.plumbing_outlined,
-                radius: 50.0,
-                textIcon: 'Encanador',
+                textIcon: 'Encanadores',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'plumber'),
+                    ),
+                  );
+                },
               ),
               CardHomeService(
                 icon: Icons.cleaning_services,
-                radius: 50.0,
                 textIcon: 'Limpeza doméstica',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'home_cleaner'),
+                    ),
+                  );
+                },
               ),
               CardHomeService(
-                  icon: Icons.pest_control_rodent,
-                  radius: 50.0,
-                  textIcon: 'Controle de peste'),
+                icon: Icons.pest_control_rodent,
+                textIcon: 'Controle de peste',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'pest_controller'),
+                    ),
+                  );
+                },
+              ),
               CardHomeService(
-                  icon: Icons.carpenter_rounded,
-                  radius: 50.0,
-                  textIcon: 'Carpintaria'),
+                icon: Icons.carpenter_rounded,
+                textIcon: 'Carpinteiros',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'carpenter'),
+                    ),
+                  );
+                },
+              ),
               CardHomeService(
-                  icon: Icons.yard_outlined,
-                  radius: 50.0,
-                  textIcon: 'Jardineiro')
+                icon: Icons.yard_outlined,
+                textIcon: 'Jardineiros',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProfessionalPage(profession: 'gardener'),
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),
