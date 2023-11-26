@@ -1,9 +1,11 @@
 package com.homeservice.api.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.homeservice.api.enums.ProfessionEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -14,15 +16,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_professional")
-public class ProfessionalEntity {
-	
+public class ProfessionalEntity implements Serializable{
+	private static final long serialVersionUID = -5143543148194068766L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer professionalID;
+	private Integer professionalId;
 	
 	private String name;
 	
@@ -42,28 +46,33 @@ public class ProfessionalEntity {
 	@Column(name = "jobs_performeds")
 	private Integer jobsPerformeds;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "addressId")
+	private AddressEntity address;
+	
 	public ProfessionalEntity() {
 		
 	}
 
-	public ProfessionalEntity(Integer professionalID, String name, ProfessionEnum profession, String description,
-			Double pricePerHour, List<String> avaliations, Integer jobsPerformeds) {
+	public ProfessionalEntity(Integer professionalId, String name, ProfessionEnum profession, String description,
+			Double pricePerHour, List<String> avaliations, Integer jobsPerformeds, AddressEntity address) {
 		super();
-		this.professionalID = professionalID;
+		this.professionalId = professionalId;
 		this.name = name;
 		this.profession = profession;
 		this.description = description;
 		this.pricePerHour = pricePerHour;
 		this.avaliations = avaliations;
 		this.jobsPerformeds = jobsPerformeds;
+		this.address = address;
 	}
 
-	public Integer getProfessionalID() {
-		return professionalID;
+	public Integer getProfessionalId() {
+		return professionalId;
 	}
 
-	public void setProfessionalID(Integer professionalID) {
-		this.professionalID = professionalID;
+	public void setProfessionalId(Integer professionalID) {
+		this.professionalId = professionalID;
 	}
 
 	public String getName() {
@@ -112,6 +121,14 @@ public class ProfessionalEntity {
 
 	public void setJobsPerformeds(Integer jobsPerformeds) {
 		this.jobsPerformeds = jobsPerformeds;
+	}
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 	
 }

@@ -1,17 +1,22 @@
 package com.homeservice.api.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_user")
-public class UserEntity {
-	
+public class UserEntity implements Serializable{
+	private static final long serialVersionUID = -3028711885595667424L;
+
 	@Id				
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
@@ -24,16 +29,21 @@ public class UserEntity {
 		
 	private String password;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "addressId")
+	private AddressEntity address;
+	
 	public UserEntity() {
 		
 	}
 	
-	public UserEntity(Integer userId, String name, String cpf, String email, String password) {
+	public UserEntity(Integer userId, String name, String cpf, String email, String password, AddressEntity address) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.cpf = cpf;
+		this.address = address;
 		
 	}
 
@@ -75,6 +85,14 @@ public class UserEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 
 	@Override
