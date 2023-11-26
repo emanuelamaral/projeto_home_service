@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/entity/professional_entity.dart';
+import 'package:projeto_home_service/src/pages/professional/professional_details_page.dart';
 
 class CardProfessional extends StatelessWidget {
   const CardProfessional({Key? key, required this.professional})
@@ -53,7 +54,15 @@ class CardProfessional extends StatelessWidget {
                   Row(
                     children: [
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProfessionalDetailsPage(
+                                    professional: professional),
+                              ),
+                            );
+                          },
                           child: const Text(
                             'Detalhes',
                             style: TextStyle(
