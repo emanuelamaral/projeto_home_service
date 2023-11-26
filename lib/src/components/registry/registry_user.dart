@@ -1,57 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../entity/user_entity.dart';
-import '../../service/user_service.dart';
+import 'package:projeto_home_service/src/components/registry/registry_controller.dart';
 import '../label/label_component.dart';
 import '../buttons/sign_button_component.dart';
 import '../textfield/cpf_textfield_component.dart';
 import '../textfield/textfield_component.dart';
 
-class RegistryForms extends StatelessWidget {
+class RegistryUser extends StatelessWidget {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final cpfController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPassowrdController = TextEditingController();
 
-  final UserService userService = UserService();
+  // final UserService userService = UserService();
 
-  RegistryForms({super.key});
+  RegistryUser({super.key});
 
-  bool verifyPassword() {
-    if (passwordController.text != confirmPassowrdController.text) {
-      Fluttertoast.showToast(msg: "As senhas não condizem!");
-      return false;
-    }
-    return true;
-  }
-
-  void registryUser(context) async {
-    if (!verifyPassword()) {
+  void verifyValues(context) {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        cpfController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPassowrdController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Você não informou todos os campos!");
       return;
     }
 
-    final name = nameController.text;
-    final email = emailController.text;
-    final password = passwordController.text;
-    final cpf = cpfController.text;
-
-    final UserEntity userEntity = UserEntity(
-      name: name,
-      email: email,
-      password: password,
-      cpf: cpf,
-    );
-    try {
-      print('Entrou no try do cadastrar');
-      await userService.insertUser(userEntity);
-      Fluttertoast.showToast(msg: "Cadastro realizado com sucesso!");
-      Navigator.pushNamed(context, '/login');
-    } catch (e) {
-      Fluttertoast.showToast(msg: "Falha no cadastro");
-      print(e);
+    if (passwordController.text != confirmPassowrdController.text) {
+      Fluttertoast.showToast(msg: "As senhas não condizem!");
+      return;
     }
+
+    RegistryController registry = RegistryController(
+        nameController: nameController.text,
+        emailController: emailController.text,
+        cpfController: cpfController.text,
+        passwordController: passwordController.text);
+
+    registry.registryUser(context);
   }
 
   @override
@@ -94,7 +81,7 @@ class RegistryForms extends StatelessWidget {
         child: SignButtonComponent(
             text: 'Cadastrar',
             login: false,
-            onPressedCallback: () => registryUser(context)),
+            onPressedCallback: () => verifyValues(context)),
       ),
     ]);
   }
