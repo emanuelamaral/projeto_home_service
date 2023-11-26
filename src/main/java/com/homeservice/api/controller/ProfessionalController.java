@@ -27,9 +27,23 @@ public class ProfessionalController {
 		return (ArrayList<ProfessionalEntity>) profRepository.findAll();
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("/id={id}")
 	private ProfessionalEntity getProfessionalById(@PathVariable Integer id) {
 		return profRepository.findById(id).get();
+	}
+	
+	@GetMapping("/profession={profession}")
+	private ArrayList<ProfessionalEntity> getAllProfessionalsByProfession(@PathVariable String profession) {
+		ArrayList<ProfessionalEntity> profEntity = getAllProfessional();
+		ArrayList<ProfessionalEntity> professionals = new ArrayList<>();
+		
+		for (ProfessionalEntity pe : profEntity) {
+			if (pe.getProfession().toString().toLowerCase().equals(profession)) {
+				professionals.add(pe);
+			}
+		}
+		
+		return professionals;
 	}
 	
 	@PostMapping

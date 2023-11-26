@@ -30,7 +30,7 @@ public class UserController {
 		return (ArrayList<UserEntity>) userRepository.findAll();
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/id={id}")
 	public UserEntity getById(@PathVariable Integer id) {
 		return userRepository.findById(id).get();
 		
@@ -74,17 +74,18 @@ public class UserController {
 		return userRepository.save(user);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/id={id}")
 	public UserEntity updateUser(@PathVariable Integer id, @RequestBody UserEntity user) {
 		UserEntity userUpdated = getById(id);
 		userUpdated.setName(user.getName());
 		userUpdated.setEmail(user.getEmail());
 		userUpdated.setPassword(user.getPassword());
 		userUpdated.setCpf(user.getCpf());
+		userUpdated.setAddress(user.getAddress());
 		return userRepository.save(userUpdated);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/id={id}")
 	public UserEntity deleteUser(@PathVariable Integer id) {
 		UserEntity deletedUser = getById(id);
 		userRepository.deleteById(id);
