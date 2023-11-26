@@ -24,7 +24,7 @@ class UserService {
 
   // Get User
   Future<UserEntity> getUser(int userId) async {
-    final response = await http.get(Uri.parse('$apiUrl/user/$userId'));
+    final response = await http.get(Uri.parse('$apiUrl/user/id=$userId'));
 
     if (response.statusCode == 200) {
       return UserEntity.fromJson(json.decode(response.body));
@@ -35,7 +35,7 @@ class UserService {
 
   Future<void> updateUser(UserEntity userEntity) async {
     final response = await http.put(
-      Uri.parse('$apiUrl/${userEntity.userId}'),
+      Uri.parse('$apiUrl/id=${userEntity.userId}'),
       body: json.encode(userEntity.toJson()),
       headers: headerMap,
     );
@@ -46,7 +46,7 @@ class UserService {
   }
 
   Future<void> deleteUser(int userId) async {
-    final response = await http.delete(Uri.parse('$apiUrl/user/$userId'));
+    final response = await http.delete(Uri.parse('$apiUrl/user/id=$userId'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to delete User');
