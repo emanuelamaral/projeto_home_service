@@ -1,6 +1,7 @@
 package com.homeservice.api.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.homeservice.api.entity.ProfessionalAvailability;
 import com.homeservice.api.entity.ProfessionalEntity;
 import com.homeservice.api.repository.ProfessionalRepository;
 
@@ -29,7 +31,14 @@ public class ProfessionalController {
 	
 	@GetMapping("/id={id}")
 	private ProfessionalEntity getProfessionalById(@PathVariable Integer id) {
-		return profRepository.findById(id).get();
+		return profRepository.findById(id).orElse(null);
+	}
+	
+	@GetMapping("/availabilities/id={id}")
+	private List<ProfessionalAvailability> getProfessionalAvailability(@PathVariable Integer id) {
+		ProfessionalEntity professional =  profRepository.findById(id).orElse(null);
+		
+		return  professional.getAvailabilities();
 	}
 	
 	@GetMapping("/profession={profession}")
@@ -49,6 +58,15 @@ public class ProfessionalController {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	private ProfessionalEntity insertProfessional(@RequestBody ProfessionalEntity profEntity) {
-		return profRepository.save(profEntity);
+		
+		 if (profEntity.getAvailabilities() != null) {
+	            for (ProfessionalAvailability availability : profEntity.getAvailabilities()) {
+	                availability.setProfessional(profEntity);
+	            }
+	        }
+		 
+        return profRepository.save(profEntity);
+        
+        
 	}
 }

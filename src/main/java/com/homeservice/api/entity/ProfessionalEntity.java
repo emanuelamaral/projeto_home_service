@@ -3,6 +3,7 @@ package com.homeservice.api.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homeservice.api.enums.ProfessionEnum;
 
 import jakarta.persistence.CascadeType;
@@ -16,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -50,12 +52,43 @@ public class ProfessionalEntity implements Serializable{
 	@JoinColumn(name = "address_id", referencedColumnName = "addressId")
 	private AddressEntity address;
 	
+	@Column(name = "profile_image_path")
+	private String profileImagePath;
+	
+	/*
+	 * @ElementCollection
+	 * 
+	 * @CollectionTable(name = "tb_professional_hour", joinColumns
+	 * = @JoinColumn(name = "professional_id"))
+	 * 
+	 * @Column(name = "available_hour")
+	 * 
+	 * @JsonSerialize(using = JsonTimeListSerializer.ListTimeSerializer.class)
+	 * 
+	 * @JsonDeserialize(using = JsonTimeListSerializer.ListTimeDeserializer.class)
+	 * private List<Date> availableHour;
+	 * 
+	 * @ElementCollection
+	 * 
+	 * @CollectionTable(name = "tb_professional_days_of_week", joinColumns
+	 * = @JoinColumn(name = "professional_id"))
+	 * 
+	 * @Column(name = "available_hour")
+	 * 
+	 * @Enumerated(EnumType.STRING) private List<DaysOfWeek> daysOfWeek;
+	 */
+	
+	@OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<ProfessionalAvailability> availabilities;	
+	
 	public ProfessionalEntity() {
 		
 	}
 
 	public ProfessionalEntity(Integer professionalId, String name, ProfessionEnum profession, String description,
-			Double pricePerHour, List<String> avaliations, Integer jobsPerformeds, AddressEntity address) {
+			Double pricePerHour, List<String> avaliations, Integer jobsPerformeds, AddressEntity address, String profileImagePath,
+			List<ProfessionalAvailability> availabilities) {
 		super();
 		this.professionalId = professionalId;
 		this.name = name;
@@ -65,6 +98,12 @@ public class ProfessionalEntity implements Serializable{
 		this.avaliations = avaliations;
 		this.jobsPerformeds = jobsPerformeds;
 		this.address = address;
+		this.profileImagePath = profileImagePath;
+//		this.availableHour = availableHour;
+//		this.daysOfWeek = daysOfWeek;
+		this.availabilities = availabilities;
+		
+		
 	}
 
 	public Integer getProfessionalId() {
@@ -130,5 +169,38 @@ public class ProfessionalEntity implements Serializable{
 	public void setAddress(AddressEntity address) {
 		this.address = address;
 	}
+
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
+	}
+
+	public List<ProfessionalAvailability> getAvailabilities() {
+		return availabilities;
+	}
+
+	public void setAvailabilities(List<ProfessionalAvailability> availabilities) {
+		this.availabilities = availabilities;
+	}
+
+//	public List<Date> getAvailableHour() {
+//		return availableHour;
+//	}
+//
+//	public void setAvailableHour(List<Date> availableHour) {
+//		this.availableHour = availableHour;
+//	}
+//
+//	public List<DaysOfWeek> getDaysOfWeek() {
+//		return daysOfWeek;
+//	}
+//
+//	public void setDaysOfWeek(List<DaysOfWeek> daysOfWeek) {
+//		this.daysOfWeek = daysOfWeek;
+//	}
+	
 	
 }
