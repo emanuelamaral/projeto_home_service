@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/entity/professional_entity.dart';
+import 'package:projeto_home_service/src/pages/professional/professional_choose.dart';
 import 'package:projeto_home_service/src/pages/professional/professional_details_page.dart';
 
 class CardProfessional extends StatelessWidget {
@@ -23,6 +24,12 @@ class CardProfessional extends StatelessWidget {
                 Icons.person,
                 size: 125,
               ),
+              // Image.file(
+              //   File(
+              //       "C:\\Users\\amoz_\\Documents\\projeto_home_service\\images\\carpinteiro.jpg"),
+              //   height: 50,
+              //   width: 50,
+              // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -34,7 +41,7 @@ class CardProfessional extends StatelessWidget {
                         fontSize: 18),
                   ),
                   Text(
-                    '${professional.profession}',
+                    '${professional.address!.district}',
                     style: const TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.grey,
@@ -76,7 +83,15 @@ class CardProfessional extends StatelessWidget {
                           color: Color.fromARGB(255, 49, 49, 49),
                         ),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProfessionalChoose(
+                                      professional: professional),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Escolher',
                               style: TextStyle(

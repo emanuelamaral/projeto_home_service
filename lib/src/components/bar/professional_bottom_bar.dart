@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_home_service/src/entity/professional_entity.dart';
+
+import '../../pages/professional/professional_choose.dart';
 
 class ProfessionalBottomBar extends StatelessWidget {
-  const ProfessionalBottomBar({super.key});
+  const ProfessionalBottomBar({super.key, required this.professional});
+
+  final ProfessionalEntity professional;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,15 @@ class ProfessionalBottomBar extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProfessionalChoose(professional: professional),
+                  ),
+                );
+              },
             ),
           ),
         ],

@@ -1,3 +1,5 @@
+import 'address_entity.dart';
+
 class ProfessionalEntity {
   int? professionalId;
   final String? name;
@@ -6,27 +8,31 @@ class ProfessionalEntity {
   final double? pricePerHour;
   final List<dynamic>? avaliations;
   final int? jobsPerformeds;
+  final AddressEntity? address;
+  final String? profileImagePath;
 
-  ProfessionalEntity({
-    this.professionalId,
-    required this.name,
-    required this.profession,
-    required this.description,
-    required this.pricePerHour,
-    required this.avaliations,
-    required this.jobsPerformeds,
-  });
+  ProfessionalEntity(
+      {this.professionalId,
+      required this.name,
+      required this.profession,
+      required this.description,
+      required this.pricePerHour,
+      required this.avaliations,
+      required this.jobsPerformeds,
+      required this.address,
+      required this.profileImagePath});
 
   factory ProfessionalEntity.fromJson(Map<String, dynamic> json) {
     return ProfessionalEntity(
-      professionalId: json['ProfessionalId'],
-      name: json['name'],
-      profession: capitalizeAndTranslateProfession(json['profession']),
-      description: json['description'],
-      pricePerHour: json['pricePerHour'],
-      avaliations: json['avaliations'],
-      jobsPerformeds: json['jobsPerformeds'],
-    );
+        professionalId: json['ProfessionalId'],
+        name: json['name'],
+        profession: capitalizeAndTranslateProfession(json['profession']),
+        description: json['description'],
+        pricePerHour: json['pricePerHour'],
+        avaliations: json['avaliations'],
+        jobsPerformeds: json['jobsPerformeds'],
+        address: AddressEntity.fromJson(json['address'] ?? {}),
+        profileImagePath: json['profileImagePath']);
   }
 
   Map<String, dynamic> toJson() {
@@ -38,6 +44,8 @@ class ProfessionalEntity {
       'pricePerHour': pricePerHour,
       'avaliations': avaliations,
       'jobsPerformeds': jobsPerformeds,
+      'address': address?.toJson(),
+      'profileImagePath': profileImagePath,
     };
   }
 

@@ -132,7 +132,7 @@ class ProfessionalDetailsPage extends StatelessWidget {
               ],
             ),
           ),
-          const ProfessionalBottomBar(),
+          ProfessionalBottomBar(professional: professional),
         ],
       ),
     );
