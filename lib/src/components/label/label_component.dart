@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LabelComponents extends StatelessWidget {
-  final String textLabel;
+  const LabelComponents({super.key, required this.textLabel, this.size});
 
-  const LabelComponents({required this.textLabel});
+  final String textLabel;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +12,11 @@ class LabelComponents extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         textLabel,
-        style: const TextStyle(
+        style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Poppins'),
+            fontFamily: 'Poppins',
+            fontSize: size),
       ),
     );
   }

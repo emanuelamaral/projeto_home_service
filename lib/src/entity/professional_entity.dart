@@ -1,38 +1,47 @@
 import 'address_entity.dart';
+import 'professional_availability.dart';
 
 class ProfessionalEntity {
   int? professionalId;
-  final String? name;
-  final String? profession;
-  final String? description;
-  final double? pricePerHour;
-  final List<dynamic>? avaliations;
-  final int? jobsPerformeds;
-  final AddressEntity? address;
-  final String? profileImagePath;
+  String? name;
+  String? profession;
+  String? description;
+  double? pricePerHour;
+  List<dynamic>? avaliations;
+  int? jobsPerformeds;
+  AddressEntity? address;
+  String? profileImagePath;
+  List<ProfessionalAvailability>? availabilities;
 
-  ProfessionalEntity(
-      {this.professionalId,
-      required this.name,
-      required this.profession,
-      required this.description,
-      required this.pricePerHour,
-      required this.avaliations,
-      required this.jobsPerformeds,
-      required this.address,
-      required this.profileImagePath});
+  ProfessionalEntity({
+    this.professionalId,
+    this.name,
+    this.profession,
+    this.description,
+    this.pricePerHour,
+    this.avaliations,
+    this.jobsPerformeds,
+    this.address,
+    this.profileImagePath,
+    this.availabilities,
+  });
 
   factory ProfessionalEntity.fromJson(Map<String, dynamic> json) {
     return ProfessionalEntity(
-        professionalId: json['ProfessionalId'],
-        name: json['name'],
-        profession: capitalizeAndTranslateProfession(json['profession']),
-        description: json['description'],
-        pricePerHour: json['pricePerHour'],
-        avaliations: json['avaliations'],
-        jobsPerformeds: json['jobsPerformeds'],
-        address: AddressEntity.fromJson(json['address'] ?? {}),
-        profileImagePath: json['profileImagePath']);
+      professionalId: json['professionalId'],
+      name: json['name'],
+      profession: json['profession'],
+      description: json['description'],
+      pricePerHour: json['pricePerHour'],
+      avaliations: json['avaliations'],
+      jobsPerformeds: json['jobsPerformeds'],
+      address: AddressEntity.fromJson(json['address'] ?? {}),
+      profileImagePath: json['profileImagePath'],
+      availabilities: (json['availabilities'] as List<dynamic>?)
+          ?.map(
+              (availability) => ProfessionalAvailability.fromJson(availability))
+          .toList(),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -46,6 +55,8 @@ class ProfessionalEntity {
       'jobsPerformeds': jobsPerformeds,
       'address': address?.toJson(),
       'profileImagePath': profileImagePath,
+      'availabilities':
+          availabilities?.map((availability) => availability.toJson()).toList(),
     };
   }
 
