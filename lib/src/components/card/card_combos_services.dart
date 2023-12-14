@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardCombosServices extends StatelessWidget {
-  const CardCombosServices({super.key, required this.imagePath});
+  const CardCombosServices({Key? key, required this.imagePath});
 
   final String imagePath;
 
@@ -9,14 +9,20 @@ class CardCombosServices extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5.0,
-      child: SizedBox(
-        width: 330.0,
-        height: 236.0,
-        child: Center(
+      shape: RoundedRectangleBorder(
+        borderRadius:
+            BorderRadius.circular(12.0), // Adicione cantos arredondados
+      ),
+      child: ClipRRect(
+        borderRadius:
+            BorderRadius.circular(12.0), // Adicione cantos arredondados
+        child: SizedBox(
+          width: 330.0,
+          height: 236.0,
           child: Image.asset(
             imagePath,
-            width: 330.0,
-            height: 350.0,
+            fit: BoxFit
+                .cover, // Garante que a imagem cubra todo o espaço disponível
           ),
         ),
       ),

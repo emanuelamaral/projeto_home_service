@@ -16,8 +16,8 @@ class CombosServicesCard extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: const [
               CardCombosServices(imagePath: 'images/painting_wall.jpg'),
-              CardCombosServices(imagePath: 'images/painting_wall.jpg'),
-              CardCombosServices(imagePath: 'images/painting_wall.jpg'),
+              CardCombosServices(imagePath: 'images/carpenter_combo.jpg'),
+              CardCombosServices(imagePath: 'images/pest_control.jpg'),
             ],
           ),
         ),

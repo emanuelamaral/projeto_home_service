@@ -77,6 +77,8 @@ flutter:
       - images/plumber_home_service.jpg
       - images/painting_home_service.jpg
       - images/painting_wall.jpg
+      - images/carpenter_combo.jpg
+      - images/pest_control.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

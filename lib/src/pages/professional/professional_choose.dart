@@ -35,8 +35,6 @@ class ProfessionalChoose extends StatelessWidget {
           availableHours.add(availabilities[i].availableHours!.elementAt(i));
         }
       }
-
-      // Não é necessário mais o setState, pois o estado é gerenciado pelo Provider
     }
 
     verifyDaysAvailable();
