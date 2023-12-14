@@ -144,6 +144,27 @@ class ProfessionalChoose extends StatelessWidget {
                         );
                       }).toList(),
                     ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(230, 0, 0, 0)),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/confirm_page');
+                          },
+                          child: const Text(
+                            'Confirmar',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          )),
+                    ),
                   ],
                 ),
               ),

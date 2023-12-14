@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/components/homePage/combos_services_card.dart';
 import 'package:projeto_home_service/src/components/homePage/home_services_card_list.dart';
 import 'package:projeto_home_service/src/components/homePage/popular_home_services_card.dart';
-import 'package:projeto_home_service/src/components/textfield/search_services_textfield.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,9 +15,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 100),
-            SearchServiceTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 120),
             CombosServicesCard(),
             SizedBox(height: 20),
             HomeServiceCardList(),

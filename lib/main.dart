@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/pages/account/account_page.dart';
+import 'package:projeto_home_service/src/pages/confirm/confirm_page.dart';
 import 'package:projeto_home_service/src/pages/home/home_page.dart';
 import 'package:projeto_home_service/src/pages/login/login_page.dart';
 import 'package:projeto_home_service/src/pages/main/main_page.dart';
@@ -37,8 +38,9 @@ class MyApp extends StatelessWidget {
           '/main_page': (context) => const MainPage(),
           '/login': (context) => const LoginPage(),
           '/home_page': (context) => const HomePage(),
-          '/search_page': (context) => const ConfigurationPage(),
+          '/config_page': (context) => const ConfigurationPage(),
           '/account_page': (context) => const AccountPage(),
+          '/confirm_page': (context) => const ConfirmPage(),
         },
       ),
     );
