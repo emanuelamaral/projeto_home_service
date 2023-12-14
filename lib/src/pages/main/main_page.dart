@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/pages/home/home_page.dart';
-import 'package:projeto_home_service/src/pages/search/search_page.dart';
+import 'package:projeto_home_service/src/pages/config/config_page.dart';
 
 import '../account/account_page.dart';
 
@@ -42,20 +42,20 @@ class _MainPageControllerState extends State<MainPageController> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.search),
-            label: 'Buscar',
-          ),
-          NavigationDestination(
             selectedIcon: Icon(Icons.account_box),
             icon: Icon(Icons.account_box_outlined),
             label: 'Conta',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.settings),
+            label: 'Configurações',
           ),
         ],
       ),
       body: [
         const HomePage(),
-        const SearchPage(),
         const AccountPage(),
+        const ConfigurationPage(),
       ][currentPageIndex],
     );
   }

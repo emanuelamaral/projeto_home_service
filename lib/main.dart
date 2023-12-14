@@ -5,7 +5,7 @@ import 'package:projeto_home_service/src/pages/login/login_page.dart';
 import 'package:projeto_home_service/src/pages/main/main_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/onboard_controller.dart';
 import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
-import 'package:projeto_home_service/src/pages/search/search_page.dart';
+import 'package:projeto_home_service/src/pages/config/config_page.dart';
 import 'package:projeto_home_service/src/provider/professional_provider.dart';
 import 'package:projeto_home_service/src/provider/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           '/main_page': (context) => const MainPage(),
           '/login': (context) => const LoginPage(),
           '/home_page': (context) => const HomePage(),
-          '/search_page': (context) => const SearchPage(),
+          '/search_page': (context) => const ConfigurationPage(),
           '/account_page': (context) => const AccountPage(),
         },
       ),
