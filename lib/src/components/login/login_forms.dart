@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projeto_home_service/src/auth/user_auth.dart';
+import 'package:projeto_home_service/src/entity/user_entity.dart';
 import 'package:projeto_home_service/src/service/user_service.dart';
+import 'package:provider/provider.dart';
 
 import '../../pages/registry/registry_page.dart';
+import '../../provider/user_provider.dart';
 import '../buttons/sign_button_component.dart';
 import '../checkbox/checkbox_component.dart';
 import '../label/label_component.dart';
@@ -24,9 +27,12 @@ class LoginForm extends StatelessWidget {
     final UserAuth userAuth = UserAuth(email: email, password: password);
 
     try {
-      await userService.verifyAuthLogin(userAuth);
+      UserEntity userEntity = await userService.verifyAuthLogin(userAuth);
+
       Fluttertoast.showToast(msg: "Login realizado com sucesso!");
       Navigator.pushNamed(context, '/main_page');
+
+      Provider.of<UserProvider>(context, listen: false).setUser(userEntity);
     } catch (e) {
       Fluttertoast.showToast(msg: "Falha ao logar");
       print(e);

@@ -33,15 +33,17 @@ class UserService {
     }
   }
 
-  Future<void> updateUser(UserEntity userEntity) async {
+  Future<UserEntity> updateUser(UserEntity userEntity) async {
     final response = await http.put(
-      Uri.parse('$apiUrl/id=${userEntity.userId}'),
+      Uri.parse('$apiUrl/user/id=${userEntity.userId}'),
       body: json.encode(userEntity.toJson()),
       headers: headerMap,
     );
 
     if (response.statusCode != 200) {
       throw Exception('Failed to update User');
+    } else {
+      return UserEntity.fromJson(json.decode(response.body));
     }
   }
 
@@ -53,12 +55,14 @@ class UserService {
     }
   }
 
-  Future<void> verifyAuthLogin(UserAuth userAuth) async {
+  Future<UserEntity> verifyAuthLogin(UserAuth userAuth) async {
     final response = await http.post(Uri.parse('$apiUrl/user/auth'),
         body: json.encode(userAuth.toJson()), headers: headerMap);
 
     if (response.body == "") {
       throw Exception('Failed to auth User');
+    } else {
+      return UserEntity.fromJson(json.decode(response.body));
     }
   }
 }
