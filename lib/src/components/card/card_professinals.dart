@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/entity/professional_entity.dart';
 import 'package:projeto_home_service/src/pages/professional/professional_choose.dart';
 import 'package:projeto_home_service/src/pages/professional/professional_details_page.dart';
+import 'package:projeto_home_service/src/provider/professional_provider.dart';
+import 'package:provider/provider.dart';
 
 class CardProfessional extends StatelessWidget {
   const CardProfessional({Key? key, required this.professional})
@@ -84,11 +86,14 @@ class CardProfessional extends StatelessWidget {
                         ),
                         child: TextButton(
                             onPressed: () {
+                              Provider.of<ProfessionalProvider>(context,
+                                      listen: false)
+                                  .setProfessional(professional);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProfessionalChoose(
-                                      professional: professional),
+                                  builder: (context) =>
+                                      const ProfessionalChoose(),
                                 ),
                               );
                             },

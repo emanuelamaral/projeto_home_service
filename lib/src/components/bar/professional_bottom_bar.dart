@@ -51,8 +51,7 @@ class ProfessionalBottomBar extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ProfessionalChoose(professional: professional),
+                    builder: (context) => const ProfessionalChoose(),
                   ),
                 );
               },

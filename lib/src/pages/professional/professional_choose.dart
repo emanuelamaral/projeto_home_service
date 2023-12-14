@@ -2,57 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:projeto_home_service/src/components/card/card_days_of_week.dart';
 import 'package:projeto_home_service/src/components/label/label_component.dart';
 import 'package:projeto_home_service/src/entity/professional_availability.dart';
-import 'package:projeto_home_service/src/entity/professional_entity.dart';
 import 'package:projeto_home_service/src/list/days_of_week_list.dart';
+import 'package:projeto_home_service/src/provider/professional_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../../components/ListView/list_view_hours_available.dart';
-
-class ProfessionalChoose extends StatefulWidget {
-  ProfessionalChoose({super.key, required this.professional});
-
-  final ProfessionalEntity professional;
-  final List<String>? daysOfWeekAvailable = [];
-  final List<ProfessionalAvailability> availabilities = [];
-
-  final List<TimeOfDay>? availableHours = [];
-
-  @override
-  State<ProfessionalChoose> createState() => _ProfessionalChooseState();
-}
-
-class _ProfessionalChooseState extends State<ProfessionalChoose> {
-  @override
-  void initState() {
-    super.initState();
-    verifyDaysAvailable();
-  }
-
-  verifyDaysAvailable() {
-    widget.professional.availabilities?.forEach((element) {
-      for (int i = 0; i < daysOfWeek.length; i++) {
-        if (element.dayOfWeek.toString().contains(daysOfWeek[i])) {
-          widget.daysOfWeekAvailable!.add(daysOfWeek[i]);
-          widget.availabilities.add(element);
-        }
-      }
-    });
-  }
-
-  getHoursAvailable(value) {
-    for (int i = 0; i < widget.availabilities.length; i++) {
-      if (widget.availabilities[i].dayOfWeek
-          .toString()
-          .contains(value.toString())) {
-        widget.availableHours!
-            .add(widget.availabilities[i].availableHours!.elementAt(i));
-      }
-    }
-
-    setState(() {});
-  }
+class ProfessionalChoose extends StatelessWidget {
+  const ProfessionalChoose({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final professionalProvider = Provider.of<ProfessionalProvider>(context);
+    final professional = professionalProvider.professional;
+
+    final List<String> daysOfWeekAvailable = [];
+    final List<ProfessionalAvailability> availabilities = [];
+    final List<TimeOfDay> availableHours = [];
+
+    void verifyDaysAvailable() {
+      professional.availabilities?.forEach((element) {
+        for (int i = 0; i < daysOfWeek.length; i++) {
+          if (element.dayOfWeek.toString().contains(daysOfWeek[i])) {
+            daysOfWeekAvailable.add(daysOfWeek[i]);
+            availabilities.add(element);
+          }
+        }
+      });
+    }
+
+    void getHoursAvailable(value) {
+      for (int i = 0; i < availabilities.length; i++) {
+        if (availabilities[i].dayOfWeek.toString().contains(value.toString())) {
+          availableHours.add(availabilities[i].availableHours!.elementAt(i));
+        }
+      }
+
+      // Não é necessário mais o setState, pois o estado é gerenciado pelo Provider
+    }
+
+    verifyDaysAvailable();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -90,7 +78,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Seg',
                             dayVerfify: 'MONDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('MONDAY');
                             },
@@ -98,7 +86,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Ter',
                             dayVerfify: 'TUESDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('TUESDAY');
                             },
@@ -106,7 +94,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Qua',
                             dayVerfify: 'WEDNESDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('WEDNESDAY');
                             },
@@ -114,7 +102,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Qui',
                             dayVerfify: 'THURSDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('THURSDAY');
                             },
@@ -122,7 +110,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Sex',
                             dayVerfify: 'FRIDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('FRIDAY');
                             },
@@ -130,7 +118,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Sáb',
                             dayVerfify: 'SATURDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('SATURDAY');
                             },
@@ -138,7 +126,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                           CardDaysOfWeek(
                             dayView: 'Dom',
                             dayVerfify: 'SUNDAY',
-                            daysOfWeekAvailable: widget.daysOfWeekAvailable!,
+                            daysOfWeekAvailable: daysOfWeekAvailable,
                             onPressedButton: () {
                               getHoursAvailable('SUNDAY');
                             },
@@ -151,7 +139,7 @@ class _ProfessionalChooseState extends State<ProfessionalChoose> {
                       size: 20,
                     ),
                     Column(
-                      children: widget.availableHours!.map((time) {
+                      children: availableHours.map((time) {
                         return ListTile(
                           title: Text("${time.hour}:${time.minute}"),
                           // Personalize conforme necessário

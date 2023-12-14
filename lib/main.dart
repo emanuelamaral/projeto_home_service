@@ -6,6 +6,7 @@ import 'package:projeto_home_service/src/pages/main/main_page.dart';
 import 'package:projeto_home_service/src/pages/onboarding/onboard_controller.dart';
 import 'package:projeto_home_service/src/pages/registry/registry_page.dart';
 import 'package:projeto_home_service/src/pages/search/search_page.dart';
+import 'package:projeto_home_service/src/provider/professional_provider.dart';
 import 'package:projeto_home_service/src/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -19,8 +20,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => UserProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => ProfessionalProvider())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
