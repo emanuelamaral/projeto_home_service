@@ -1,6 +1,7 @@
 package com.homeservice.api.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,22 @@ public class ProfessionalController {
 		
 		return  professional.getAvailabilities();
 	}
+	
+//	@GetMapping("/availabilities-hour/id={id}")
+//	private ArrayList<Date> getProfessionalAvailableHours(@PathVariable Integer id) {
+//		ProfessionalEntity professional = profRepository.findById(id).orElse(null);
+//		
+//		ArrayList<Date> professionalAvalHours = new ArrayList<Date>();
+//		
+//		int size = professional.getAvailabilities().size();
+//		
+//		for(int i = 0; i < size; i++) {
+//		
+//			professionalAvalHours.addAll(professional.getAvailabilities().get(i).getAvailableHours());
+//		}
+//		
+//		return professionalAvalHours;
+//	}
 	
 	@GetMapping("/profession={profession}")
 	private ArrayList<ProfessionalEntity> getAllProfessionalsByProfession(@PathVariable String profession) {

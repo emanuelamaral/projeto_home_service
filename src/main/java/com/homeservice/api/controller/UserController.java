@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.homeservice.api.repository.UserRepository;
 import com.homeservice.api.auth.UserAuth;
+import com.homeservice.api.entity.AddressEntity;
 import com.homeservice.api.entity.UserEntity;
+import com.homeservice.api.repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
@@ -77,12 +78,32 @@ public class UserController {
 	@PutMapping("/id={id}")
 	public UserEntity updateUser(@PathVariable Integer id, @RequestBody UserEntity user) {
 		UserEntity userUpdated = getById(id);
-		userUpdated.setName(user.getName());
-		userUpdated.setEmail(user.getEmail());
-		userUpdated.setPassword(user.getPassword());
-		userUpdated.setCpf(user.getCpf());
-		userUpdated.setAddress(user.getAddress());
+		userUpdated.setName(!user.getName().isEmpty() ? user.getName() : userUpdated.getName());
+		userUpdated.setEmail(!user.getEmail().isEmpty() ? user.getEmail() : userUpdated.getEmail());
+		userUpdated.setPassword(!user.getPassword().isEmpty() ? user.getPassword() : userUpdated.getPassword());
+		userUpdated.setCpf(!user.getCpf().isEmpty() ? user.getCpf() : userUpdated.getCpf());
+		
+		if (user.getAddress() != null) {
+			updateAddressUser(userUpdated.getUserId(), user);
+		}
+		
 		return userRepository.save(userUpdated);
+	}
+	
+	@PutMapping("/address/id={id}")
+	public void updateAddressUser(@PathVariable Integer id, @RequestBody UserEntity user) {
+		UserEntity userAddressUpdated = getById(id);
+		AddressEntity userAddressFromJson = user.getAddress();
+		
+		AddressEntity addressToUpdate = userAddressUpdated.getAddress();
+		addressToUpdate.setStreet(!userAddressFromJson.getStreet().isEmpty() ? userAddressFromJson.getStreet() : addressToUpdate.getStreet());
+		addressToUpdate.setNumberOfHouse(!userAddressFromJson.getNumberOfHouse().isEmpty() ? userAddressFromJson.getNumberOfHouse() : addressToUpdate.getNumberOfHouse());
+		addressToUpdate.setDistrict(!userAddressFromJson.getDistrict().isEmpty() ? userAddressFromJson.getDistrict() : addressToUpdate.getDistrict());
+		addressToUpdate.setCity(!userAddressFromJson.getCity().isEmpty() ? userAddressFromJson.getCity() : addressToUpdate.getCity());
+		addressToUpdate.setState(!userAddressFromJson.getState().isEmpty() ? userAddressFromJson.getState() : addressToUpdate.getState());
+		addressToUpdate.setComplement(!userAddressFromJson.getComplement().isEmpty() ? userAddressFromJson.getComplement() : addressToUpdate.getComplement());
+		
+		userAddressUpdated.setAddress(addressToUpdate);
 	}
 	
 	@DeleteMapping("/id={id}")

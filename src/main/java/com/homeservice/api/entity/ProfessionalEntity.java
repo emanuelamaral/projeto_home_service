@@ -55,29 +55,6 @@ public class ProfessionalEntity implements Serializable{
 	@Column(name = "profile_image_path")
 	private String profileImagePath;
 	
-	/*
-	 * @ElementCollection
-	 * 
-	 * @CollectionTable(name = "tb_professional_hour", joinColumns
-	 * = @JoinColumn(name = "professional_id"))
-	 * 
-	 * @Column(name = "available_hour")
-	 * 
-	 * @JsonSerialize(using = JsonTimeListSerializer.ListTimeSerializer.class)
-	 * 
-	 * @JsonDeserialize(using = JsonTimeListSerializer.ListTimeDeserializer.class)
-	 * private List<Date> availableHour;
-	 * 
-	 * @ElementCollection
-	 * 
-	 * @CollectionTable(name = "tb_professional_days_of_week", joinColumns
-	 * = @JoinColumn(name = "professional_id"))
-	 * 
-	 * @Column(name = "available_hour")
-	 * 
-	 * @Enumerated(EnumType.STRING) private List<DaysOfWeek> daysOfWeek;
-	 */
-	
 	@OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<ProfessionalAvailability> availabilities;	

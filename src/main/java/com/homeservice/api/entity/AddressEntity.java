@@ -63,11 +63,11 @@ public class AddressEntity implements Serializable {
 		this.street = street;
 	}
 	
-	public String getNumber() {
+	public String getNumberOfHouse() {
 		return numberOfHouse;
 	}
 
-	public void setNumber(String numberOfHouse) {
+	public void setNumberOfHouse(String numberOfHouse) {
 		this.numberOfHouse = numberOfHouse;
 	}
 
