@@ -83,7 +83,9 @@ public class UserController {
 		userUpdated.setPassword(!user.getPassword().isEmpty() ? user.getPassword() : userUpdated.getPassword());
 		userUpdated.setCpf(!user.getCpf().isEmpty() ? user.getCpf() : userUpdated.getCpf());
 		
-		if (user.getAddress() != null) {
+		if (userUpdated.getAddress() == null && user.getAddress() != null) {
+			userUpdated.setAddress(user.getAddress());
+		} else if (userUpdated.getAddress() != null && user.getAddress() != null) {
 			updateAddressUser(userUpdated.getUserId(), user);
 		}
 		
