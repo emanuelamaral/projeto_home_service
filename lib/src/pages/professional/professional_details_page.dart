@@ -97,7 +97,7 @@ class ProfessionalDetailsPage extends StatelessWidget {
           ),
           const Spacer(),
           SizedBox(
-            height: 200, // Ajuste conforme necessário
+            height: 150, // Ajuste conforme necessário
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
