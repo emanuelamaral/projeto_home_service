@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: home_service
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
+
+  spring-app:
+    image: openjdk:17-jdk
+    volumes:
+      - ./target/HomeService-0.0.1-SNAPSHOT.jar:/app/HomeService-0.0.1-SNAPSHOT.jar
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/home_service?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    command: ["java", "-jar", "/app/HomeService-0.0.1-SNAPSHOT.jar"]
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
